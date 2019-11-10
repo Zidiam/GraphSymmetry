@@ -8,20 +8,70 @@ import java.util.Random;
 
 public class GraphSymmetryPanel extends JPanel{
 	
-	private final int WIDTH = 1020, HEIGHT = 516;
+	private final int WIDTH = 1250, HEIGHT = 750;
 	private int speed = 75;
 	private Timer timer;
+	private GraphPanel graphPanel;
+	private JScrollPane scrollPane = new JScrollPane();
+	private GraphSetupPanel graphsetupPanel;
+	private JButton setupButton, createButton;
 	
 	public GraphSymmetryPanel() {
 		addKeyListener(new DirectionListener());
 		timer = new Timer(speed, new ReboundListener());
-
 		
-		setBackground(Color.WHITE);
+		setupgraphPanel();
+		setupButtons();
+		
+		setLayout(null);
+		
+		setBackground(Color.green);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setFocusable(true);
 		timer.start();
 		
+	}
+	
+	public void setupgraphPanel() {
+		remove(scrollPane);
+		
+		graphsetupPanel = new GraphSetupPanel();
+		
+		scrollPane = new JScrollPane(graphsetupPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(0, 50, 1250, 700);
+    	
+        add(scrollPane);
+        this.updateUI();
+	}
+	
+	public void creategraphPanel() {
+		remove(scrollPane);
+		
+		graphPanel = new GraphPanel();
+		
+		scrollPane = new JScrollPane(graphPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(0, 50, 1250, 700);
+    	
+        add(scrollPane);
+      	this.updateUI();
+	}
+	
+	public void setupButtons() {
+		setupButton = new JButton("Setup");
+		createButton = new JButton("Create");
+		
+		setupButton.addActionListener(new ButtonListener());
+		createButton.addActionListener(new ButtonListener());
+		
+		setupButton.setBounds(0, 0, 75, 25);
+		createButton.setBounds(100, 0, 75, 25);
+		
+		add(setupButton);
+		add(createButton);
 	}
 	
 	public void paintComponent(Graphics page)
@@ -31,7 +81,12 @@ public class GraphSymmetryPanel extends JPanel{
 	
 	private class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
-			//if(event.getSource() == Button) {}
+			if(event.getSource() == setupButton) {
+				setupgraphPanel();
+			}
+			if(event.getSource() == createButton) {
+				creategraphPanel();
+			}
 		}
 	}
 	
@@ -53,6 +108,7 @@ public class GraphSymmetryPanel extends JPanel{
 		//--------------------------------------------------------------
 		public void actionPerformed(ActionEvent event)
 		{
+			repaint();
 			//happens over and over again
 		}
 	}
