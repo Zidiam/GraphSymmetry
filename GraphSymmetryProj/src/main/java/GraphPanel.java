@@ -61,12 +61,19 @@ public class GraphPanel extends JPanel{
 		 for(int scan = 0; scan < pointsList.size(); scan++) {
 			 Point first = new Point();
 			 Point second = new Point();
+			 boolean foundFirst = false;
+			 boolean foundSecond = false;
 			 for(int find = 0; find < graphPointList.size(); find++) {
 				 if(pointsList.get(scan).x == graphPointList.get(find).getValue()) {
 					 first = new Point(graphPointList.get(find).getX()+7, graphPointList.get(find).getY()+7);
+					 foundFirst = true;
 				 }
 				 if(pointsList.get(scan).y == graphPointList.get(find).getValue()) {
 					 second = new Point(graphPointList.get(find).getX()+7, graphPointList.get(find).getY()+7);
+					 foundSecond = true;
+				 }
+				 if(foundSecond == true && foundFirst == true) {
+					 break;
 				 }
 			 }
 			 page.setColor(Color.black);
