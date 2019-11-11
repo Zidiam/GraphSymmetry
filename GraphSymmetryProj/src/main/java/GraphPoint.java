@@ -27,6 +27,7 @@ public class GraphPoint extends JLabel{
 		super.paintComponent(page);
 		page.setColor(Color.red);
 		page.fillOval(point.x, point.y, 15, 15);
+		page.setColor(Color.MAGENTA);
 		page.drawString(value + "", point.x, point.y);
 	}
 }
