@@ -11,7 +11,7 @@ public class GraphPanel extends JPanel{
 	private ArrayList<GraphPoint> graphPointList;
 	private int verticies;
 	 public GraphPanel() {
-	    	setPreferredSize(new Dimension(1250, 650));
+	    	setPreferredSize(new Dimension(1350, 625));
 	    	setLayout(null);
 	    	
 	    	this.setBackground(Color.cyan);
@@ -37,7 +37,7 @@ public class GraphPanel extends JPanel{
 		 	int n = verticies;
 		 	this.setPreferredSize(new Dimension(1250 + n*3, 750 + n*3));
 		 	int a = this.getWidth() / 2;
-	        int b = this.getHeight() / 2;
+	        int b = this.getHeight() / 2 - 75;
 	        int m = Math.min(a, b);
 	        int r = 4 * m / 5;
 	        int r2 = Math.abs(m - r) / 2;

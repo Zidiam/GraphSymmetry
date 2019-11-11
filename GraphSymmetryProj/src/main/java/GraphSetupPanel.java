@@ -28,7 +28,7 @@ public class GraphSetupPanel extends JPanel{
 	private Random rand = new Random();
 	
 	public GraphSetupPanel() {
-		setPreferredSize(new Dimension(1250, 650));
+		setPreferredSize(new Dimension(1350, 625));
     	setLayout(null);
     	
     	

@@ -40,7 +40,7 @@ public class GraphSymmetryPanel extends JPanel{
 		scrollPane = new JScrollPane(graphsetupPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(0, 50, 1250, 575);
+        scrollPane.setBounds(0, 50, 1350, 625);
     	
         add(scrollPane);
         this.updateUI();
@@ -53,7 +53,7 @@ public class GraphSymmetryPanel extends JPanel{
 		scrollPane = new JScrollPane(graphPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBounds(0, 50, 1250, 575);
+        scrollPane.setBounds(0, 50, 1350, 625);
     	
         add(scrollPane);
       	this.updateUI();
