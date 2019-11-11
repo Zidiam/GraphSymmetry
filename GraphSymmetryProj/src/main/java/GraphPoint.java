@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -24,7 +25,7 @@ public class GraphPoint extends JLabel{
 	public void paintComponent(Graphics page)
 	{
 		super.paintComponent(page);
-		
+		page.setColor(Color.red);
 		page.fillOval(point.x, point.y, 15, 15);
 		page.drawString(value + "", point.x, point.y);
 	}

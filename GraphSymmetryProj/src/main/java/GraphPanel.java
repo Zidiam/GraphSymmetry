@@ -26,12 +26,13 @@ public class GraphPanel extends JPanel{
 	{
 		super.paintComponent(page);
 		
-		drawPoints(page);
+		setUpPoints();
 		drawLines(page);
+		drawPoints(page);
 		
 	}
 	 
-	 public void drawPoints(Graphics page) {
+	 public void setUpPoints() {
 		 	graphPointList = new ArrayList<GraphPoint>();
 		 	int n = verticies;
 		 	this.setPreferredSize(new Dimension(1250 + n*3, 750 + n*3));
@@ -46,9 +47,14 @@ public class GraphPanel extends JPanel{
 	            int y = (int) Math.round(b + r * Math.sin(t));
 	            GraphPoint graphPoint = new GraphPoint(x - r2, y - r2, i+1);
 	            graphPoint.setBounds(x - r2, y - r2, 15, 15);
-	            graphPoint.paint(page);
 	            graphPointList.add(graphPoint);
 	        }
+	 }
+	 
+	 public void drawPoints(Graphics page) {
+		 for(int x = 0; x < graphPointList.size(); x++) {
+			 graphPointList.get(x).paint(page);
+		 }
 	 }
 	 
 	 public void drawLines(Graphics page) {
@@ -63,6 +69,7 @@ public class GraphPanel extends JPanel{
 					 second = new Point(graphPointList.get(find).getX()+7, graphPointList.get(find).getY()+7);
 				 }
 			 }
+			 page.setColor(Color.black);
 			 page.drawLine(first.x, first.y, second.x, second.y);
 		 }
 	 }
