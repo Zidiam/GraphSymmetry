@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 public class GraphPanel extends JPanel{
 	private ArrayList<Point> pointsList;
+	private ArrayList<GraphPoint> graphPointList;
+	private int verticies;
 	 public GraphPanel() {
 	    	setPreferredSize(new Dimension(1250, 750));
 	    	setLayout(null);
@@ -15,8 +17,9 @@ public class GraphPanel extends JPanel{
 	    	this.setBackground(Color.cyan);
 	 }
 	 
-	 public void setuppointList(ArrayList<Point> pointList) {
+	 public void setuppointList(ArrayList<Point> pointList, int amount) {
 		 pointsList = pointList;
+		 verticies = amount;
 	 }
 	 
 	 public void paintComponent(Graphics page)
@@ -24,11 +27,13 @@ public class GraphPanel extends JPanel{
 		super.paintComponent(page);
 		
 		drawPoints(page);
+		drawLines(page);
 		
 	}
 	 
 	 public void drawPoints(Graphics page) {
-		 	int n = 100;
+		 	graphPointList = new ArrayList<GraphPoint>();
+		 	int n = verticies;
 		 	this.setPreferredSize(new Dimension(1250 + n*3, 750 + n*3));
 		 	int a = this.getWidth() / 2;
 	        int b = this.getHeight() / 2;
@@ -39,7 +44,30 @@ public class GraphPanel extends JPanel{
 	            double t = 2 * Math.PI * i / n;
 	            int x = (int) Math.round(a + r * Math.cos(t));
 	            int y = (int) Math.round(b + r * Math.sin(t));
-	            page.fillOval(x - r2, y - r2, 15, 15);
+	            GraphPoint graphPoint = new GraphPoint(x - r2, y - r2, i+1);
+	            graphPoint.setBounds(x - r2, y - r2, 15, 15);
+	            graphPoint.paint(page);
+	            graphPointList.add(graphPoint);
 	        }
 	 }
+	 
+	 public void drawLines(Graphics page) {
+		 for(int scan = 0; scan < pointsList.size(); scan++) {
+			 Point first = new Point();
+			 Point second = new Point();
+			 for(int find = 0; find < graphPointList.size(); find++) {
+				 if(pointsList.get(scan).x == graphPointList.get(find).getValue()) {
+					 first = new Point(graphPointList.get(find).getX()+7, graphPointList.get(find).getY()+7);
+				 }
+				 if(pointsList.get(scan).y == graphPointList.get(find).getValue()) {
+					 second = new Point(graphPointList.get(find).getX()+7, graphPointList.get(find).getY()+7);
+				 }
+			 }
+			 page.drawLine(first.x, first.y, second.x, second.y);
+		 }
+	 }
+	 
+	 
+	 
+	 
 }

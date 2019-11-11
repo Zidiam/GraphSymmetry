@@ -36,6 +36,10 @@ public class GraphSetupPanel extends JPanel{
     	this.setBackground(Color.yellow);
 	}
 	
+	public int getVerticies() {
+		return verticies;
+	}
+	
 	public ArrayList<Point> getpointList(){
 		ArrayList<Point> points = new ArrayList<Point>();
 		
