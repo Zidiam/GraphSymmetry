@@ -20,6 +20,8 @@ public class GraphSymmetryPanel extends JPanel{
 		addKeyListener(new DirectionListener());
 		timer = new Timer(speed, new ReboundListener());
 		
+		graphsetupPanel = new GraphSetupPanel();
+		graphPanel = new GraphPanel();
 		setupgraphPanel();
 		setupButtons();
 		
@@ -35,8 +37,6 @@ public class GraphSymmetryPanel extends JPanel{
 	public void setupgraphPanel() {
 		remove(scrollPane);
 		
-		graphsetupPanel = new GraphSetupPanel();
-		
 		scrollPane = new JScrollPane(graphsetupPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -49,8 +49,7 @@ public class GraphSymmetryPanel extends JPanel{
 	public void creategraphPanel() {
 		remove(scrollPane);
 		
-		graphPanel = new GraphPanel();
-		
+		graphPanel.setuppointList(graphsetupPanel.getpointList());
 		scrollPane = new JScrollPane(graphPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
