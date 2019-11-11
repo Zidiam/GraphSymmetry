@@ -11,7 +11,7 @@ public class GraphPanel extends JPanel{
 	private ArrayList<GraphPoint> graphPointList;
 	private int verticies;
 	 public GraphPanel() {
-	    	setPreferredSize(new Dimension(1250, 750));
+	    	setPreferredSize(new Dimension(1250, 650));
 	    	setLayout(null);
 	    	
 	    	this.setBackground(Color.cyan);

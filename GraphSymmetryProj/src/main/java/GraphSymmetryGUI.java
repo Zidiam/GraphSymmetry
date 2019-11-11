@@ -9,6 +9,6 @@ public class GraphSymmetryGUI {
 		
 		frame.pack();
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 	}
 }
