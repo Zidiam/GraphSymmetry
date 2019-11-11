@@ -21,9 +21,10 @@ public class GraphSetupPanel extends JPanel{
 	private ArrayList <JLabel> rowLabelList;
 	private ArrayList <JLabel> colLabelList;
 	private int verticies;
-	private JButton enter, randomize;
+	private JButton enter, randomize, fillButton;
 	private ArrayList<Point> pointList;
 	private boolean random = false;
+	private boolean fill = false;
 	private Random rand = new Random();
 	
 	public GraphSetupPanel() {
@@ -61,21 +62,25 @@ public class GraphSetupPanel extends JPanel{
 	private void setupComponents() {
 		verticiesT = new JTextField("5");
 		verticiesF = new JLabel("Verticies:");
-		enter = new JButton("Enter");
+		enter = new JButton("Clear");
 		randomize = new JButton("Randomize");
+		fillButton = new JButton("Fill");
 		
     	verticiesF.setBounds(25, 25, 75, 25);
     	verticiesT.setBounds(100, 25, 75, 25);
     	enter.setBounds(200, 25, 75, 25);
     	randomize.setBounds(300, 25, 100, 25);
+    	fillButton.setBounds(425, 25, 75, 25);
     	
     	enter.addActionListener(new ButtonListener());
     	randomize.addActionListener(new ButtonListener());
+    	fillButton.addActionListener(new ButtonListener());
     	
     	add(verticiesF);
     	add(verticiesT);
     	add(enter);
     	add(randomize);
+    	add(fillButton);
     	
     	setupradioButtons();
 	}
@@ -117,6 +122,9 @@ public class GraphSetupPanel extends JPanel{
 				if(random == true) {
 					radio.setSelected(rand.nextBoolean());
 				}
+				if(fill == true) {
+					radio.setSelected(true);
+				}
 				add(radio);
 				radioButtonList[row][col] = radio;
 			}
@@ -133,11 +141,19 @@ public class GraphSetupPanel extends JPanel{
 			if(event.getSource() == enter) {
 				verticies = Integer.parseInt(verticiesT.getText());
 				random = false;
+				fill = false;
 				setupradioButtons();
 			}
 			if(event.getSource() == randomize) {
 				verticies = Integer.parseInt(verticiesT.getText());
 				random = true;
+				fill = false;
+				setupradioButtons();
+			}
+			if(event.getSource() == fillButton) {
+				verticies = Integer.parseInt(verticiesT.getText());
+				random = false;
+				fill = true;
 				setupradioButtons();
 			}
 		}
