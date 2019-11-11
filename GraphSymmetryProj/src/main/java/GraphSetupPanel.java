@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,8 +21,10 @@ public class GraphSetupPanel extends JPanel{
 	private ArrayList <JLabel> rowLabelList;
 	private ArrayList <JLabel> colLabelList;
 	private int verticies;
-	private JButton enter;
+	private JButton enter, randomize;
 	private ArrayList<Point> pointList;
+	private boolean random = false;
+	private Random rand = new Random();
 	
 	public GraphSetupPanel() {
 		setPreferredSize(new Dimension(1250, 900));
@@ -59,16 +62,20 @@ public class GraphSetupPanel extends JPanel{
 		verticiesT = new JTextField("5");
 		verticiesF = new JLabel("Verticies:");
 		enter = new JButton("Enter");
+		randomize = new JButton("Randomize");
 		
     	verticiesF.setBounds(25, 25, 75, 25);
     	verticiesT.setBounds(100, 25, 75, 25);
     	enter.setBounds(200, 25, 75, 25);
+    	randomize.setBounds(300, 25, 100, 25);
     	
     	enter.addActionListener(new ButtonListener());
+    	randomize.addActionListener(new ButtonListener());
     	
     	add(verticiesF);
     	add(verticiesT);
     	add(enter);
+    	add(randomize);
     	
     	setupradioButtons();
 	}
@@ -107,6 +114,9 @@ public class GraphSetupPanel extends JPanel{
 				colLabelList.add(colLabel);
 				JRadioButton radio = new JRadioButton((col+1) + "," + (row+1));
 				radio.setBounds(25+row*75, 75+col*25, 75, 25);
+				if(random == true) {
+					radio.setSelected(rand.nextBoolean());
+				}
 				add(radio);
 				radioButtonList[row][col] = radio;
 			}
@@ -122,6 +132,12 @@ public class GraphSetupPanel extends JPanel{
 		public void actionPerformed(ActionEvent event) {
 			if(event.getSource() == enter) {
 				verticies = Integer.parseInt(verticiesT.getText());
+				random = false;
+				setupradioButtons();
+			}
+			if(event.getSource() == randomize) {
+				verticies = Integer.parseInt(verticiesT.getText());
+				random = true;
 				setupradioButtons();
 			}
 		}
